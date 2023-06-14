@@ -1,5 +1,13 @@
 const parseArgs = () => {
-    // Write your code here 
-};
-
-parseArgs();
+    const args = process.argv.slice(2);
+    const props = {};
+    for (let i = 0; i < args.length; i += 2) {
+        const propName = args[i].slice(2);
+        const value = args[i + 1];
+        props[propName] = value;
+    }
+    for (const [propName, value] of Object.entries(props)) {
+        console.log(`${propName} is ${value}`);
+    }
+}
+parseArgs()
