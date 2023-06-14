@@ -1,5 +1,5 @@
+import * as fs from 'node:fs'
 const read = async () => {
-    // Write your code here 
 };
 
 await read();

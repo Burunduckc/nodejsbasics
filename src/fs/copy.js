@@ -3,12 +3,12 @@ import * as fs from 'node:fs'
 const copy = async (dir, dest) => {
     fs.stat(dir, err => {
         if (err){
-            throw new Error('папки нету')
+            throw new Error(`FS operation failed: folder (${dir}) missing`)
         }
     })
     fs.stat(dest, err => {
         if (!err){
-            throw new Error('FS operation failed')
+            throw new Error(`FS operation failed: folder (${dest}) now exists`)
         } else {
             fs.mkdir(dest, () => {})
             fs.readdir(dir, (err, filesFolders)=>{

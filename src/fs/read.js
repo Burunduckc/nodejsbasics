@@ -1,11 +1,12 @@
 import * as fs from 'node:fs'
 
 const read = async () => {
-    fs.access('src/fs/files/fileToRead.txt', (err)=>{
+    const urlFileRead = 'src/fs/files/fileToRead.txt'
+    fs.access(urlFileRead, (err)=>{
         if (err){
-            throw new Error('FS operation failed')
+            throw new Error(`FS operation failed: file (${urlFileRead}) missing`)
         } else{
-            let read = fs.readFileSync('src/fs/files/fileToRead.txt', 'utf8')
+            let read = fs.readFileSync(urlFileRead, 'utf8')
             console.log(read)
         }
     })

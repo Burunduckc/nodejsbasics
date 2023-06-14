@@ -1,12 +1,14 @@
 import * as fs from 'node:fs'
 
 const rename = async () => {
-    fs.access('src/fs/files/properFilename.md', err=>{
-        if (!err) throw new Error('FS operation failed')
+    const correctFile = 'src/fs/files/properFilename.md'
+    const wrongFile = 'src/fs/files/wrongFilename.txt'
+    fs.access(correctFile, err=>{
+        if (!err) throw new Error(`FS operation failed: File (${correctFile}) now exists`)
     })
-    fs.access('src/fs/files/wrongFilename.txt', err=>{
+    fs.access(wrongFile, err=>{
         if(err) {
-            throw new Error('FS operation failed')
+            throw new Error(`FS operation failed: File (${wrongFile}) missing`)
         } else {
             fs.renameSync('src/fs/files/wrongFilename.txt', 'src/fs/files/properFilename.md')
         }
